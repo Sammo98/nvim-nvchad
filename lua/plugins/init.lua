@@ -219,21 +219,6 @@ local default_plugins = {
 
   -- file managing , picker etc
   {
-    "nvim-tree/nvim-tree.lua",
-    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-    init = function()
-      require("core.utils").load_mappings "nvimtree"
-    end,
-    opts = function()
-      return require "plugins.configs.nvimtree"
-    end,
-    config = function(_, opts)
-      dofile(vim.g.base46_cache .. "nvimtree")
-      require("nvim-tree").setup(opts)
-    end,
-  },
-
-  {
     "nvim-telescope/telescope.nvim",
     dependencies = "nvim-treesitter/nvim-treesitter",
     cmd = "Telescope",
@@ -256,17 +241,17 @@ local default_plugins = {
   },
 
   -- Only load whichkey after all the gui
-  {
-    "folke/which-key.nvim",
-    keys = { "<leader>", '"', "'", "`", "c", "v", "g" },
-    init = function()
-      require("core.utils").load_mappings "whichkey"
-    end,
-    config = function(_, opts)
-      dofile(vim.g.base46_cache .. "whichkey")
-      require("which-key").setup(opts)
-    end,
-  },
+  -- {
+  --   "folke/which-key.nvim",
+  --   keys = { "<leader>", '"', "'", "`", "c", "v", "g" },
+  --   init = function()
+  --     require("core.utils").load_mappings "whichkey"
+  --   end,
+  --   config = function(_, opts)
+  --     dofile(vim.g.base46_cache .. "whichkey")
+  --     require("which-key").setup(opts)
+  --   end,
+  -- },
 }
 
 local config = require("core.utils").load_config()

@@ -47,11 +47,46 @@ local plugins = {
     end,
   },
 
-  -- To make a plugin not be loaded
-  -- {
-  --   "NvChad/nvim-colorizer.lua",
-  --   enabled = false
-  -- },
+  -- Mine!
+  {
+    "kristijanhusak/vim-dadbod-ui",
+    dependencies = {"tpope/vim-dadbod"},
+    lazy=false
+  },
+  {
+    "nvim-telescope/telescope-file-browser.nvim",
+    lazy = false,
+    keys = {
+      {"<leader>fe", "<cmd>:Telescope file_browser<cr>", desc = "Browse Files"}
+    },
+    config = function()
+      require("telescope").load_extension("file_browser")
+    end
+  },
+  {
+    "simrat39/rust-tools.nvim",
+    ft = "rust",
+    dependencies = "neovim/nvim-lspconfig",
+    opts = function()
+      return require "custom.configs.rust-tools"
+    end,
+    config = function (_, opts)
+      require("rust-tools").setup(opts)
+    end
+  },
+  {
+    {
+      "chrisgrieser/nvim-spider",
+      lazy = false,
+      keys = {
+        {"w", "<cmd> lua require('spider').motion('w')<CR>", mode = {"n", "o", "x"}},
+        {"e", "<cmd> lua require('spider').motion('e')<CR>", mode = {"n", "o", "x"}},
+        {"b", "<cmd> lua require('spider').motion('b')<CR>", mode = {"n", "o", "x"}},
+      }
+    }
+  },
+
+
 
   -- All NvChad plugins are lazy-loaded by default
   -- For a plugin to be loaded, you will need to set either `ft`, `cmd`, `keys`, `event`, or set `lazy = false`
